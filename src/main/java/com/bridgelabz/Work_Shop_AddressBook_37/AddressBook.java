@@ -40,9 +40,12 @@ public class AddressBook {
 		System.out.println("Enter Book name to which you have to add contact");
 		String bookName = scanner.next();
 		if (AddressBookMain.containsKey(bookName)) {
-			ArrayList<Contact> contactList = AddressBookMain.get(bookName);
-			contactList.add(contact);
-			AddressBookMain.put(bookName, contactList);
+			contactlist.stream().filter(value -> value.getFirstname().equals(contact.getFirstname())).forEach(value -> {
+				System.out.println("Duplicate Contact");
+				addNewContact();
+			});
+			contactlist.add(contact);
+			AddressBookMain.put(bookName, contactlist);
 			System.out.println("New Contact Has Been Added Successfully");
 		} else {
 			contactlist.add(contact);
@@ -51,7 +54,8 @@ public class AddressBook {
 		}
 	}
 
-	public void editContact() {
+	public void editContact() // edit contact.
+	{
 		String enteredFirstName;
 		System.out.println("Enter First name of contact to edit it ");
 		enteredFirstName = scanner.next();
