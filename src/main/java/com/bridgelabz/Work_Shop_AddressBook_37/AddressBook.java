@@ -166,6 +166,13 @@ public class AddressBook {
 		});
 	}
 
+	public void sortByCity() {
+		addressbook.keySet().forEach((String key) -> {
+			addressbook.get(key).stream().sorted(Comparator.comparing(Contact::getCity)).collect(Collectors.toList())
+					.forEach(person -> System.out.println(person.toString()));
+		});
+	}
+
 	public void displayList() {
 		for (Contact iterator : contactlist)
 			System.out.println(iterator);
